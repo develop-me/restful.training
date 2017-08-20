@@ -6,7 +6,10 @@ $hostname = config("app.hostname");
 
 $router->post("accounts", "Accounts@create");
 
-$router->group(["domain" => "{account}.{$hostname}"], function ($router) {
+$router->group([
+    "domain" => "{account}.{$hostname}",
+    "middleware" => ["key"],
+], function ($router) {
     $router->group(["prefix" => "articles"], function ($router) {
         $router->get("", "Articles@list");
         $router->post("", "Articles@create");

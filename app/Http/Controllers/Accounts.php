@@ -15,6 +15,7 @@ class Accounts extends Controller
 
         return [
             "uri" => $account->uri(),
+            "api_key" => $account->key,
         ];
     }
 }
