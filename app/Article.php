@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 class Article extends Model
 {
-    protected $fillable = ["title", "article"];
+    protected $fillable = ["title", "article", "account_id"];
     protected $with = ["tags"];
     protected $hidden = ["account_id"];
 
