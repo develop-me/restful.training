@@ -11,7 +11,7 @@ class Article extends Model
 {
     protected $fillable = ["title", "article", "account_id"];
     protected $with = ["tags"];
-    protected $hidden = ["account_id"];
+    protected $hidden = ["account_id", "pivot"];
 
     public function comments()
     {

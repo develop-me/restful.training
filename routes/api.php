@@ -21,4 +21,8 @@ $router->group([
             $router->post("{article}/comments", "Comments@create");
         });
     });
+
+    $router->group(["prefix" => "tags"], function ($router) {
+        $router->get("{tag}/articles", "Tags@articles");
+    });
 });

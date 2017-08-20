@@ -10,6 +10,7 @@ class Tag extends Model
     public $timestamps = false; // don't need timestamps
     protected $fillable = ["name"]; // name should be fillable
     protected $visible = ["id", "name"];
+    protected $hidden = ["pivot"];
 
     public function articles()
     {
