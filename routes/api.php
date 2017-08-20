@@ -18,6 +18,7 @@ $router->group([
             $router->get("{article}", "Articles@read");
             $router->put("{article}", "Articles@update");
             $router->delete("{article}", "Articles@delete");
+            $router->get("{article}/comments", "Comments@list");
             $router->post("{article}/comments", "Comments@create");
         });
     });

@@ -9,6 +9,11 @@ use App\Comment;
 
 class Comments extends Controller
 {
+    public function list(Account $account, Article $article)
+    {
+        return $article->comments;
+    }
+
     public function create(CommentRequest $request, Account $account, Article $article)
     {
         $comment = new Comment($request->only(["email", "comment"]));
