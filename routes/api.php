@@ -24,6 +24,7 @@ $router->group([
     });
 
     $router->group(["prefix" => "tags"], function ($router) {
+        $router->get("", "Tags@list");
         $router->get("{tag}/articles", "Tags@articles");
     });
 });
