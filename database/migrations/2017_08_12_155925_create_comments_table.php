@@ -21,7 +21,7 @@ class CreateCommentsTable extends Migration
 
             // link up to articles table
             $table->integer("article_id")->unsigned();
-            $table->foreign("article_id")->references("id")->on("articles");
+            $table->foreign("article_id")->references("id")->on("articles")->onDelete("cascade");
         });
     }
 
