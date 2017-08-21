@@ -43,11 +43,11 @@ All future requests should use the root uri `http://test.restful.training/api/` 
 
 ## Articles 
 
-### GET `/articles`
+### `GET /articles`
 
 Will return a list of all blog articles
 
-### POST `/articles`
+### `POST /articles`
 
 Will create a new blog article 
 
@@ -57,11 +57,11 @@ Will create a new blog article
 - `article`: required, article content
 - `tags`: required, an array of tags
 
-### GET `/articles/:id`
+### `GET /articles/:id`
 
 Will return an article with the given `id`
 
-### PUT `/articles/:id`
+### `PUT /articles/:id`
 
 Will update an existing article
 
@@ -71,7 +71,7 @@ Will update an existing article
 - `article`: required, article content
 - `tags`: required, an array of tags
 
-### DELETE `/articles/:id`
+### `DELETE /articles/:id`
 
 Will delete an existing article
 
@@ -79,11 +79,11 @@ Will delete an existing article
 
 ## Comments 
 
-### GET `/articles/:id/comments`
+### `GET /articles/:id/comments`
 
 Get the comments for an article
 
-### POST `/articles/:id/comments`
+### `POST /articles/:id/comments`
 
 Add a comment to an article
 
@@ -96,10 +96,10 @@ Add a comment to an article
 
 ## Tags 
 
-### GET `/tags`
+### `GET /tags`
 
 List all tags
 
-### GET `/tags/articles`
+### `GET /tags/:id/articles`
 
 List all articles for a specific tag
