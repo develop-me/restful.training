@@ -30,6 +30,7 @@ class Articles extends Controller
             return [
                 "id" => $article->id,
                 "title" => $article->title,
+                "tags" => $article->tags,
             ];
         });
     }
