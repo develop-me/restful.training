@@ -18,7 +18,7 @@ class Articles extends Controller
         $data["account_id"] = $account->id;
         $article = Article::create($data);
 
-        $tags = Tag::parse($request->get("tags"));
+        $tags = Tag::parse($request->get("tags", []));
         $article->setTags($tags);
 
         return $article;
@@ -45,7 +45,7 @@ class Articles extends Controller
         $data = $request->only(["title", "article"]);
         $article->fill($data)->save();
 
-        $tags = Tag::parse($request->get("tags"));
+        $tags = Tag::parse($request->get("tags", []));
         $article->setTags($tags);
 
         return $article;
