@@ -24,6 +24,6 @@ class Account extends Model
 
     public function uri()
     {
-        return $this->name . "." . config("app.hostname") . "/api/";
+        return "http://" . $this->name . "." . config("app.hostname") . "/api/";
     }
 }
