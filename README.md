@@ -55,7 +55,7 @@ Will create a new blog article
 
 - `title`: required, article title
 - `article`: required, article content
-- `tags`: required, an array of tags
+- `tags`: an array of tags
 
 ### `GET /articles/:id`
 
@@ -69,7 +69,7 @@ Will update an existing article
 
 - `title`: required, article title
 - `article`: required, article content
-- `tags`: required, an array of tags
+- `tags`: an array of tags
 
 ### `DELETE /articles/:id`
 
