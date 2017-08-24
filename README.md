@@ -12,7 +12,7 @@ All requests should be sent using JSON and with the `Accept: application/json` h
 
 In order to use the service you'll need to create an account. You only need to do this once.
 
-`GET http://restful.training/api/accounts`
+`POST http://restful.training/api/accounts`
 
 ### Request
 
@@ -33,7 +33,7 @@ For example, if your response was:
 ```json
 {
     "uri": "test.restful.training/api/",
-    "key": "15beab53cc8880738da99953d2f6ceffbe83418a"
+    "api_key": "15beab53cc8880738da99953d2f6ceffbe83418a"
 }
 ```
 
