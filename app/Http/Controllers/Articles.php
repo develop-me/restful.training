@@ -8,6 +8,7 @@ use App\Comment;
 use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleResource;
 
 class Articles extends Controller
 {
@@ -21,23 +22,17 @@ class Articles extends Controller
         $tags = Tag::parse($request->get("tags", []));
         $article->setTags($tags);
 
-        return $article;
+        return new ArticleResource($article);
     }
 
     public function list(Account $account)
     {
-        return Article::where("account_id", $account->id)->get()->map(function ($article) {
-            return [
-                "id" => $article->id,
-                "title" => $article->title,
-                "tags" => $article->tags,
-            ];
-        });
+        return ArticleResource::collection(Article::where("account_id", $account->id)->get());
     }
 
     public function read(Account $account, Article $article)
     {
-        return $article;
+        return new ArticleResource($article);
     }
 
     public function update(ArticleRequest $request, Account $account, Article $article)
@@ -48,7 +43,7 @@ class Articles extends Controller
         $tags = Tag::parse($request->get("tags", []));
         $article->setTags($tags);
 
-        return $article;
+        return new ArticleResource($article);
     }
 
     public function delete(Account $account, Article $article)
