@@ -1,0 +1,2 @@
+# /bin/bash
+ssh shc "cd /var/www/restful.training/current/ && php artisan migrate:refresh"
