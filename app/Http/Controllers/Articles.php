@@ -8,6 +8,7 @@ use App\Comment;
 use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\ArticlePatchRequest;
 use App\Http\Resources\ArticleResource;
 
 class Articles extends Controller
@@ -42,6 +43,21 @@ class Articles extends Controller
 
         $tags = Tag::parse($request->get("tags", []));
         $article->setTags($tags);
+
+        return new ArticleResource($article);
+    }
+
+    public function patch(ArticlePatchRequest $request, Account $account, Article $article)
+    {
+        $data = $request->all();
+        $article->fill($data)->save();
+        
+        $tagsRequest = $request->get("tags");
+
+        if ($tagsRequest) {
+            $tags = Tag::parse($request->get("tags", []));
+            $article->setTags($tags);
+        }
 
         return new ArticleResource($article);
     }

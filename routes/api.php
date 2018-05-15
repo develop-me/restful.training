@@ -17,6 +17,7 @@ $router->group([
         $router->group(["middleware" => "account"], function ($router) {
             $router->get("{article}", "Articles@read");
             $router->put("{article}", "Articles@update");
+            $router->patch("{article}", "Articles@patch");
             $router->delete("{article}", "Articles@delete");
             $router->get("{article}/comments", "Comments@list");
             $router->post("{article}/comments", "Comments@create");

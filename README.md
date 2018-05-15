@@ -63,12 +63,22 @@ Will return an article with the given `id`
 
 ### `PUT /articles/:id`
 
-Will update an existing article
+Will update an entire existing article
 
 #### Request
 
 - `title`: required, article title
 - `article`: required, article content
+- `tags`: an array of tags
+
+### `PATCH /articles/:id`
+
+Will update parts of an existing article
+
+#### Request
+
+- `title`: article title
+- `article`: article content
 - `tags`: an array of tags
 
 ### `DELETE /articles/:id`
