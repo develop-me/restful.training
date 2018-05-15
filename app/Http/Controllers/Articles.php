@@ -49,6 +49,6 @@ class Articles extends Controller
     public function delete(Account $account, Article $article)
     {
         $article->delete();
-        return response(null, 200);
+        return response(null, 204);
     }
 }
