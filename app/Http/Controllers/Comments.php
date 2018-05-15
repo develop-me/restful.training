@@ -6,12 +6,13 @@ use App\Http\Requests\CommentRequest;
 use App\Account;
 use App\Article;
 use App\Comment;
+use App\Http\Resources\CommentResource;
 
 class Comments extends Controller
 {
     public function list(Account $account, Article $article)
     {
-        return $article->comments;
+        return CommentResource::collection($article->comments);
     }
 
     public function create(CommentRequest $request, Account $account, Article $article)
@@ -19,6 +20,6 @@ class Comments extends Controller
         $comment = new Comment($request->only(["email", "comment"]));
         $article->comments()->save($comment);
 
-        return $comment;
+        return new CommentResource($comment);
     }
 }
