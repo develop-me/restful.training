@@ -2,8 +2,6 @@
 set :application, "restful.training"
 set :repo_url, "git@github.com:smallhadroncollider/restful-blog.git"
 
-set :scm, :git
-
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push(".env")
 
