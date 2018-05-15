@@ -7,7 +7,7 @@ use App\Account;
 use App\Tag;
 use App\Article;
 use App\Http\Resources\TagResource;
-use App\Http\Resources\ArticleResource;
+use App\Http\Resources\ArticleListResource;
 
 class Tags extends Controller
 {
@@ -26,6 +26,6 @@ class Tags extends Controller
     {
         $articles = $tag->articles->where("account_id", $account->id);
 
-        return ArticleResource::collection($articles);
+        return ArticleListResource::collection($articles);
     }
 }

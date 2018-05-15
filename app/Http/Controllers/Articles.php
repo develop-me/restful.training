@@ -6,10 +6,12 @@ use App\Account;
 use App\Article;
 use App\Comment;
 use App\Tag;
-use Illuminate\Http\Request;
+
 use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\ArticlePatchRequest;
+
 use App\Http\Resources\ArticleResource;
+use App\Http\Resources\ArticleListResource;
 
 class Articles extends Controller
 {
@@ -28,7 +30,7 @@ class Articles extends Controller
 
     public function list(Account $account)
     {
-        return ArticleResource::collection(Article::where("account_id", $account->id)->get());
+        return ArticleListResource::collection(Article::where("account_id", $account->id)->get());
     }
 
     public function read(Account $account, Article $article)
