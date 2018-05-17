@@ -9,8 +9,13 @@ set :linked_files, fetch(:linked_files, []).push(".env")
 set :linked_dirs, fetch(:linked_dirs, []).push("storage")
 
 namespace :deploy do
-    after :updating, "laravel:create_paths"
-    after :published, "laravel:optimize"
+    task :mod_group do
+        on roles(:app) do
+            execute "sudo chown -R www-data:www-data #{deploy_to}"
+            execute "sudo chmod -R 775 #{deploy_to}"
+            info "Adding www-data permissions"
+        end
+    end
 
     task :php_reload do
         on roles(:app) do
@@ -19,5 +24,8 @@ namespace :deploy do
         end
     end
 
+    after :updating, "laravel:create_paths"
+    after :updated, "deploy:mod_group"
+    after :published, "laravel:optimize"
     after :published, "php_reload"
 end
