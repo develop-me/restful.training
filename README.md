@@ -16,12 +16,12 @@ In order to use the service you'll need to create an account. You only need to d
 
 ### Request
 
-- `key`: use the password you've been given 
+- `key`: use the password you've been given
 - `name`: pick a username
 
 ### Response
 
-- `uri`: where you should make your API requests to 
+- `uri`: where you should make your API requests to
 - `api_key`: your unique API key, write this down you'll need it for all other requests
 
 ### Usage
@@ -41,75 +41,103 @@ All future requests should use the root uri `http://test.restful.training/api/` 
 
 ---
 
-## Articles 
+## Blog
 
-### `GET /articles`
+### Articles
+
+#### `GET /blog/articles`
 
 Will return a list of all blog articles
 
-### `POST /articles`
+#### `POST /blog/articles`
 
-Will create a new blog article 
+Will create a new blog article
 
-#### Request
+##### Request
 
 - `title`: required, article title
 - `article`: required, article content
 - `tags`: an array of tags
 
-### `GET /articles/:id`
+#### `GET /blog/articles/<id>`
 
 Will return an article with the given `id`
 
-### `PUT /articles/:id`
+#### `PUT /blog/articles/<id>`
 
 Will update an entire existing article
 
-#### Request
+##### Request
 
 - `title`: required, article title
 - `article`: required, article content
 - `tags`: an array of tags
 
-### `PATCH /articles/:id`
+#### `PATCH /blog/articles/<id>`
 
 Will update parts of an existing article
 
-#### Request
+##### Request
 
 - `title`: article title
 - `article`: article content
 - `tags`: an array of tags
 
-### `DELETE /articles/:id`
+#### `DELETE /blog/articles/<id>`
 
 Will delete an existing article
 
----
+### Comments
 
-## Comments 
-
-### `GET /articles/:id/comments`
+#### `GET /blog/articles/<id>/comments`
 
 Get the comments for an article
 
-### `POST /articles/:id/comments`
+#### `POST /blog/articles/<id>/comments`
 
 Add a comment to an article
 
-#### Request
+##### Request
 
-- `email`: required, email of comment 
+- `email`: required, email of comment
 - `comment`: required, comment content
 
----
+### Tags
 
-## Tags 
-
-### `GET /tags`
+#### `GET /blog/tags`
 
 List all tags
 
-### `GET /tags/:id/articles`
+#### `GET /blog/tags/<id>/articles`
 
 List all articles for a specific tag
+
+---
+
+## Counter
+
+Each user gets one counter
+
+#### `GET /counters`
+
+Will return your counter
+
+#### `POST /counters`
+
+Sets the `count` value
+
+##### Request
+
+- `count`: required, integer
+
+#### `PUT /counters`
+
+Sets the `step` value
+
+##### Request
+
+- `step`: required, integer
+
+#### `DELETE /counters`
+
+Resets the counter
