@@ -2,13 +2,20 @@
 
 [http://restful.training](http://restful.training) was created to give you some experience with using RESTful APIs. It is an API for a basic blog that has articles, comments, and tags.
 
+- [Authentication](#auth)
+- End Points:
+    - [Blog](#blog)
+    - [Counter](#counter)
+    - [PingPong](#pingpong)
+
+
 ## General
 
 All requests should be sent using JSON and with the `Accept: application/json` header.
 
 ---
 
-## Auth
+## Authentication
 
 In order to use the service you'll need to create an account. You only need to do this once.
 
@@ -47,7 +54,9 @@ All future requests should use the root uri `http://test.restful.training/api/` 
 
 #### `GET /blog/articles`
 
-Will return a list of all blog articles
+Will return a list of all blog articles.
+
+**Does not include the full article text.**
 
 #### `POST /blog/articles`
 
@@ -141,3 +150,62 @@ Sets the `step` value
 #### `DELETE /counters`
 
 Resets the counter
+
+---
+
+## PingPong
+
+#### `GET /ping-pong/games`
+
+All of the games that have been played, with the latest game first.
+
+##### Response
+
+- `id`
+- `complete`: boolean - is the game over
+- `player1`: integer - player 1 score
+- `player2`: integer - player 2 score
+
+#### `GET /ping-pong/games/<id>`
+
+The specified game
+
+##### Response
+
+- `id`
+- `complete`: boolean - is the game over
+- `winning_score`: integer - score to stop on
+- `change_serve`: integer - how often to alternate serve
+- `player1`: object - player 1 object
+- `player2`: object - player 2 object
+
+##### Player Object
+
+- `name`: string - name
+- `score`: string - score
+- `serving`: bool - is this player serving?
+- `won`: bool - has this player won?
+
+#### `POST /ping-pong/games`
+
+Create a new game of ping-pong
+
+##### Request
+
+- `player1`: string - player 1 name
+- `player2`: string - player 2 name
+- `winning_score`: *optional* integer - score to stop on (default: 21)
+- `change_serve`: *optional* integer - how often to alternate serve (default: 5)
+
+
+#### `PATCH /ping-pong/games/<id>/score`
+
+Add one point to a player's score
+
+##### Request
+
+- `player`: integer (`1` | `2`) - the player to add a point for
+
+#### `DELETE /ping-pong/games/<id>`
+
+Delete a game of ping-pong

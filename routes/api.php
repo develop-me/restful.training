@@ -15,7 +15,7 @@ $router->group([
             $router->get("", "Articles@list");
             $router->post("", "Articles@create");
 
-            $router->group(["middleware" => "account"], function ($router) {
+            $router->group(["middleware" => "account:article"], function ($router) {
                 $router->get("{article}", "Articles@read");
                 $router->put("{article}", "Articles@update");
                 $router->patch("{article}", "Articles@patch");
@@ -36,5 +36,16 @@ $router->group([
         $router->post("", "Counters@count");
         $router->put("", "Counters@step");
         $router->delete("", "Counters@reset");
+    });
+
+    $router->group(["prefix" => "ping-pong/games"], function ($router) {
+        $router->get("", "PingPong@list");
+        $router->post("", "PingPong@create");
+
+        $router->group(["middleware" => "account:game"], function ($router) {
+            $router->get("{game}", "PingPong@show");
+            $router->delete("{game}", "PingPong@reset");
+            $router->patch("{game}/score", "PingPong@score");
+        });
     });
 });

@@ -13,9 +13,9 @@ class Account
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $type)
     {
-        if ($request->route("account")->id !== $request->route("article")->account_id) {
+        if ($request->route("account")->id !== $request->route($type)->account_id) {
             return abort(404);
         }
 

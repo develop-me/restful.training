@@ -53,7 +53,7 @@ class Articles extends Controller
     {
         $data = $request->all();
         $article->fill($data)->save();
-        
+
         $tagsRequest = $request->get("tags");
 
         if ($tagsRequest) {
