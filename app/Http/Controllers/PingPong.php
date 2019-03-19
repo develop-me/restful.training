@@ -9,14 +9,13 @@ use App\Http\Requests\PingPongRequest;
 use App\Http\Requests\PingPongScoreRequest;
 
 use App\Http\Resources\PingPongResource;
-use App\Http\Resources\PingPongListResource;
 
 class PingPong extends Controller
 {
     public function list(Account $account)
     {
         $games = Game::where("account_id", $account->id)->orderBy("updated_at", "desc")->get();
-        return PingPongListResource::collection($games);
+        return PingPongResource::collection($games);
     }
 
     public function create(PingPongRequest $request, Account $account)

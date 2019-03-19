@@ -155,36 +155,32 @@ Resets the counter
 
 ## PingPong
 
-#### `GET /ping-pong/games`
-
-All of the games that have been played, with the latest game first.
-
-##### Response
-
-- `id`
-- `complete`: boolean - is the game over
-- `player1`: integer - player 1 score
-- `player2`: integer - player 2 score
-
-#### `GET /ping-pong/games/<id>`
-
-The specified game
-
-##### Response
+### Standard Response
 
 - `id`
 - `complete`: boolean - is the game over
 - `winning_score`: integer - score to stop on
 - `change_serve`: integer - how often to alternate serve
 - `player1`: object - player 1 object
+    - `name`: string - name
+    - `score`: string - score
+    - `serving`: bool - is this player serving?
+    - `won`: bool - has this player won?
 - `player2`: object - player 2 object
+    - `name`: string - name
+    - `score`: string - score
+    - `serving`: bool - is this player serving?
+    - `won`: bool - has this player won?
 
-##### Player Object
+### End Points
 
-- `name`: string - name
-- `score`: string - score
-- `serving`: bool - is this player serving?
-- `won`: bool - has this player won?
+#### `GET /ping-pong/games`
+
+All of the games that have been played, with the latest game first.
+
+#### `GET /ping-pong/games/<id>`
+
+The specified game
 
 #### `POST /ping-pong/games`
 
@@ -197,14 +193,13 @@ Create a new game of ping-pong
 - `winning_score`: *optional* integer - score to stop on (default: 21)
 - `change_serve`: *optional* integer - how often to alternate serve (default: 5)
 
-
 #### `PATCH /ping-pong/games/<id>/score`
 
 Add one point to a player's score
 
 ##### Request
 
-- `player`: integer (`1` | `2`) - the player to add a point for
+- `player`: integer (`1`|`2`) - the player to add a point for
 
 #### `DELETE /ping-pong/games/<id>`
 
