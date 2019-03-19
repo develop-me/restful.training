@@ -35,6 +35,6 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ping_pongs');
+        Schema::dropIfExists('games');
     }
 }
