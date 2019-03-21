@@ -15,8 +15,8 @@ class CounterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "count" => $this->count,
-            "step" => $this->step,
+            "count" => (int) $this->count,
+            "step" => (int) $this->step,
         ];
     }
 }

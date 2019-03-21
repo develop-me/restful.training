@@ -18,7 +18,7 @@ class ArticleResource extends JsonResource
         $this->resource->load("tags");
 
         return [
-            "id" => $this->id,
+            "id" => (int) $this->id,
             "title" => $this->title,
             "article" => $this->article,
 

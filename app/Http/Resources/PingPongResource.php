@@ -15,21 +15,21 @@ class PingPongResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
-            "complete" => $this->complete(),
-            "winning_score" => $this->winning_score,
-            "change_serve" => $this->change_serve,
+            "id" => (int) $this->id,
+            "complete" => (bool) $this->complete(),
+            "winning_score" => (int) $this->winning_score,
+            "change_serve" => (int) $this->change_serve,
             "player_1" => [
                 "name" => $this->player_1,
-                "score" => $this->player_1_score,
-                "serving" => $this->serving() === 1,
-                "won" => $this->player1Won(),
+                "score" => (int) $this->player_1_score,
+                "serving" => (bool) ($this->serving() === 1),
+                "won" => (bool) $this->player1Won(),
             ],
             "player_2" => [
                 "name" => $this->player_2,
-                "score" => $this->player_2_score,
-                "serving" => $this->serving() === 2,
-                "won" => $this->player2Won(),
+                "score" => (int) $this->player_2_score,
+                "serving" => (bool) ($this->serving() === 2),
+                "won" => (bool) $this->player2Won(),
             ],
         ];
     }

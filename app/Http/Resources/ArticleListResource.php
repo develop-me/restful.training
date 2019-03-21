@@ -18,7 +18,7 @@ class ArticleListResource extends JsonResource
         $this->resource->load("tags");
 
         return [
-            "id" => $this->id,
+            "id" => (int) $this->id,
             "title" => $this->title,
 
             // just return a list of tag names
