@@ -161,12 +161,12 @@ Resets the counter
 - `complete`: boolean - is the game over
 - `winning_score`: integer - score to stop on
 - `change_serve`: integer - how often to alternate serve
-- `player1`: object - player 1 object
+- `player_1`: object - player 1 object
     - `name`: string - name
     - `score`: string - score
     - `serving`: bool - is this player serving?
     - `won`: bool - has this player won?
-- `player2`: object - player 2 object
+- `player_2`: object - player 2 object
     - `name`: string - name
     - `score`: string - score
     - `serving`: bool - is this player serving?
@@ -188,8 +188,8 @@ Create a new game of ping-pong
 
 ##### Request
 
-- `player1`: string - player 1 name
-- `player2`: string - player 2 name
+- `player_1`: string - player 1 name
+- `player_2`: string - player 2 name
 - `winning_score`: *optional* integer - score to stop on (default: 21)
 - `change_serve`: *optional* integer - how often to alternate serve (default: 5)
 
