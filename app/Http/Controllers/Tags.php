@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Account;
 use App\Tag;
-use App\Article;
 use App\Http\Resources\TagResource;
 use App\Http\Resources\ArticleListResource;
 

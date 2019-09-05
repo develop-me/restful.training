@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Article;
-use App\Comment;
 use App\Tag;
 
 use App\Http\Requests\ArticleRequest;
