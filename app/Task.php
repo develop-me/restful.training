@@ -1,0 +1,14 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+    protected $fillable = ["task", "completed", "account_id"];
+    protected $hidden = ["account_id"];
+    protected $attributes = [
+        "completed" => false,
+    ];
+}

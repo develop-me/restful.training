@@ -5,6 +5,7 @@
 - [Authentication](#auth)
 - End Points:
     - [Blog](#blog)
+    - [Tasks](#tasks)
     - [Counter](#counter)
     - [PingPong](#pingpong)
 
@@ -120,6 +121,43 @@ List all tags
 #### `GET /blog/tags/<id>/articles`
 
 List all articles for a specific tag
+
+---
+
+## Tasks
+
+### `GET /tasks`
+
+Will return a list of all tasks.
+
+
+### `POST /tasks`
+
+Will create a new task
+
+#### Request
+
+- `task`: required, task text
+
+### `GET /tasks/<id>`
+
+Will return the task with the given `id`
+
+### `PATCH /tasks/<id>`
+
+Will update a task
+
+#### Request
+
+- `task`: required, the task text
+
+### `PATCH /tasks/<id>/complete`
+
+Marks a task as complete
+
+### `DELETE /tasks/<id>`
+
+Will delete an existing task
 
 ---
 

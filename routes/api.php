@@ -48,4 +48,16 @@ $router->group([
             $router->patch("{game}/score", "PingPong@score");
         });
     });
+
+    $router->group(["prefix" => "tasks"], function ($router) {
+        $router->get("", "Tasks@list");
+        $router->post("", "Tasks@create");
+
+        $router->group(["middleware" => "account:task"], function ($router) {
+            $router->get("{task}", "Tasks@read");
+            $router->patch("{task}", "Tasks@update");
+            $router->patch("{task}/complete", "Tasks@complete");
+            $router->delete("{task}", "Tasks@delete");
+        });
+    });
 });
