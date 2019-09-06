@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Account;
 use App\Task;
 
@@ -39,7 +37,7 @@ class Tasks extends Controller
         return new TaskResource($task);
     }
 
-    public function complete(Request $request, Account $account, Task $task)
+    public function complete(Account $account, Task $task)
     {
         $task->completed = true;
         $task->save();
