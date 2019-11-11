@@ -49,6 +49,11 @@ $router->group([
         });
     });
 
+    $router->group(["prefix" => "animal-facts"], function ($router) {
+        $router->post("", "AnimalFacts@create");
+        $router->get("random", "AnimalFacts@random");
+    });
+
     $router->group(["prefix" => "tasks"], function ($router) {
         $router->get("", "Tasks@list");
         $router->post("", "Tasks@create");

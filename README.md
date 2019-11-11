@@ -5,6 +5,7 @@
 - [Authentication](#auth)
 - End Points:
     - [Blog](#blog)
+    - [Animal Facts](#animal-facts)
     - [Tasks](#tasks)
     - [Counter](#counter)
     - [PingPong](#pingpong)
@@ -121,6 +122,34 @@ List all tags
 #### `GET /blog/tags/<id>/articles`
 
 List all articles for a specific tag
+
+---
+
+## Animal Facts
+
+Create and display animal facts.
+
+**Animal facts are shared between users, so don't add any facts you wouldn't be happy with other people seeing**
+
+#### `POST /animal-facts`
+
+Creates a new animal fact
+
+#### Request
+
+- `fact`: required, string, maximum length 255
+- `made_up`: required, boolean
+
+
+#### `GET /animal-facts/random`
+
+A random animal fact
+
+#### Response
+
+- `fact`: a random fact
+- `made_up`: whether it's made up
+- `by`: who posted it
 
 ---
 
