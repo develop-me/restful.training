@@ -12,10 +12,10 @@ use App\Http\Resources\AnimalFactResource;
 
 class AnimalFacts extends Controller
 {
-    public function random(Account $account) : AnimalFactResource
+    public function random(Account $account)
     {
         $facts = AnimalFact::all();
-        return new AnimalFactResource($facts->random());
+        return $facts->isEmpty() ? response(null, 204) : new AnimalFactResource($facts->random());
     }
 
     public function create(AnimalFactRequest $request, Account $account) : AnimalFactResource
