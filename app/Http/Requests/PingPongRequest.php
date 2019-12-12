@@ -26,8 +26,8 @@ class PingPongRequest extends FormRequest
         return [
             "player_1" => ["required", "string", "max:50"],
             "player_2" => ["required", "string", "max:50"],
-            "winning_score" => ["integer"],
-            "change_serve" => ["integer"],
+            "winning_score" => ["integer", "min:1"],
+            "change_serve" => ["integer", "min:1"],
         ];
     }
 }
