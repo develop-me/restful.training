@@ -13,7 +13,7 @@ class Game extends Model
         "change_serve" => 5,
     ];
 
-    public function score(int $player)
+    public function score(int $player) : Game
     {
         $prop = "player_${player}_score";
         $this->$prop += 1;
@@ -24,7 +24,15 @@ class Game extends Model
     public function serving() : int
     {
         $total = $this->player_1_score + $this->player_2_score;
-        return (floor($total / $this->change_serve) % 2) + 1;
+        return (floor($total / $this->changeServeOn()) % 2) + 1;
+    }
+
+    private function changeServeOn() : int
+    {
+        $deuceAim = $this->winning_score - 1;
+        $deuce = $this->player_1_score >= $deuceAim && $this->player_2_score >= $deuceAim;
+
+        return $deuce ? 2 : $this->change_serve;
     }
 
     public function player1Won() : bool
