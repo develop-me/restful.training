@@ -12,6 +12,11 @@ class Article extends Model
     protected $with = ["tags"];
     protected $hidden = ["user_id", "pivot"];
 
+    public static function tagsForUser(User $user)
+    {
+        return $user->articles->pluck("tags")->flatten()->unique("id");
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

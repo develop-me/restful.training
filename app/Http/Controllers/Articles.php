@@ -17,8 +17,7 @@ class Articles extends Controller
 {
     public function create(ArticleRequest $request)
     {
-        // get post request data for title and article
-        $data = $request->only(["title", "content"]);
+        $data = $request->all();
         $data["user_id"] = Auth::id();
         $article = Article::create($data);
 

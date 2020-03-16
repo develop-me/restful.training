@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 
+use App\Article;
 use App\Tag;
 use App\Http\Resources\TagResource;
 use App\Http\Resources\ArticleListResource;
@@ -12,12 +13,7 @@ class Tags extends Controller
 {
     public function list()
     {
-        $tags = Tag::select("tags.*")->leftJoin("article_tag", "tag_id", "tags.id")
-            ->leftJoin("articles", "articles.id", "article_id")
-            ->where("articles.user_id", Auth::id())
-            ->groupBy("tags.id")
-            ->get();
-
+        $tags = Article::tagsForUser(Auth::user());
         return TagResource::collection($tags);
     }
 
