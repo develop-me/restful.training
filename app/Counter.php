@@ -13,7 +13,8 @@ class Counter extends Model
 
     public static function forUser(User $user) : Counter
     {
-        $counter = Counter::where("user_id", $user->id)->first();
+        $counter = $user->counter;
+
         return $counter ? $counter : Counter::create([
             "count" => 0,
             "step" => 1,

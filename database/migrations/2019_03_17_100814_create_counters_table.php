@@ -19,7 +19,7 @@ class CreateCountersTable extends Migration
             $table->integer('step')->default(1);
             $table->timestamps();
 
-            $table->foreignId("user_id")->unsigned();
+            $table->foreignId("user_id")->unsigned()->unique();
             $table->foreign("user_id")->references("id")->on("users");
         });
     }

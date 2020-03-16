@@ -24,9 +24,9 @@ class User extends Authenticatable
         return $this->hasMany(AnimalFact::class);
     }
 
-    public function counters()
+    public function counter()
     {
-        return $this->hasMany(Counter::class);
+        return $this->hasOne(Counter::class);
     }
 
     public function games()
