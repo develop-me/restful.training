@@ -22,7 +22,7 @@ class Tasks extends Controller
 
     public function list()
     {
-        return TaskResource::collection(Task::where("user_id", Auth::id())->get());
+        return TaskResource::collection(Auth::user()->tasks);
     }
 
     public function read(Task $task)
