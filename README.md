@@ -72,7 +72,7 @@ Will create a new blog article
 ##### Request
 
 - `title`: required, article title
-- `article`: required, article content
+- `content`: required, article content
 - `tags`: an array of tags
 
 #### `GET /blog/articles/<id>`
@@ -86,7 +86,7 @@ Will update an entire existing article
 ##### Request
 
 - `title`: required, article title
-- `article`: required, article content
+- `content`: required, article content
 - `tags`: an array of tags
 
 #### `PATCH /blog/articles/<id>`
@@ -96,7 +96,7 @@ Will update parts of an existing article
 ##### Request
 
 - `title`: article title
-- `article`: article content
+- `content`: article content
 - `tags`: an array of tags
 
 #### `DELETE /blog/articles/<id>`

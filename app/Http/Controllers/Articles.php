@@ -18,7 +18,7 @@ class Articles extends Controller
     public function create(ArticleRequest $request)
     {
         // get post request data for title and article
-        $data = $request->only(["title", "article"]);
+        $data = $request->only(["title", "content"]);
         $data["user_id"] = Auth::id();
         $article = Article::create($data);
 
@@ -41,7 +41,7 @@ class Articles extends Controller
 
     public function update(ArticleRequest $request, Article $article)
     {
-        $data = $request->only(["title", "article"]);
+        $data = $request->only(["title", "content"]);
         $article->fill($data)->save();
 
         $tags = Tag::parse($request->get("tags", []));
