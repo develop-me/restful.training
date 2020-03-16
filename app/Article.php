@@ -2,16 +2,20 @@
 
 namespace App;
 
-use App\Account;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class Article extends Model
 {
-    protected $fillable = ["title", "article", "account_id"];
+    protected $fillable = ["title", "article", "user_id"];
     protected $with = ["tags"];
-    protected $hidden = ["account_id", "pivot"];
+    protected $hidden = ["user_id", "pivot"];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function comments()
     {

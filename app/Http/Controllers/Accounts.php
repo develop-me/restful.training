@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AccountRequest;
-use App\Account;
+use App\User;
 
 class Accounts extends Controller
 {
     public function create(AccountRequest $request)
     {
         $data = $request->only(["name"]);
-        $account = Account::create($data);
+        $user = User::create($data);
+        $token = $user->createToken("api-token");
 
         return [
-            "uri" => $account->uri(),
-            "api_key" => $account->key,
+            "name" => $user->name,
+            "api_token" => $token->plainTextToken,
         ];
     }
 }

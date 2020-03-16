@@ -2,28 +2,40 @@
 
 namespace App;
 
+use Laravel\Airlock\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function animalFacts()
+    {
+        return $this->hasMany(AnimalFact::class);
+    }
+
+    public function counters()
+    {
+        return $this->hasMany(Counter::class);
+    }
+
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

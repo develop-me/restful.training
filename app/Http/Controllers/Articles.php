@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use Auth;
+
 use App\Article;
 use App\Tag;
 
@@ -14,11 +15,11 @@ use App\Http\Resources\ArticleListResource;
 
 class Articles extends Controller
 {
-    public function create(ArticleRequest $request, Account $account)
+    public function create(ArticleRequest $request)
     {
         // get post request data for title and article
         $data = $request->only(["title", "article"]);
-        $data["account_id"] = $account->id;
+        $data["user_id"] = Auth::id();
         $article = Article::create($data);
 
         $tags = Tag::parse($request->get("tags", []));
@@ -27,17 +28,18 @@ class Articles extends Controller
         return new ArticleResource($article);
     }
 
-    public function list(Account $account)
+    public function list()
     {
-        return ArticleListResource::collection(Article::where("account_id", $account->id)->get());
+        $articles = auth()->user()->articles;
+        return ArticleListResource::collection($articles);
     }
 
-    public function read(Account $account, Article $article)
+    public function read(Article $article)
     {
         return new ArticleResource($article);
     }
 
-    public function update(ArticleRequest $request, Account $account, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $data = $request->only(["title", "article"]);
         $article->fill($data)->save();
@@ -48,7 +50,7 @@ class Articles extends Controller
         return new ArticleResource($article);
     }
 
-    public function patch(ArticlePatchRequest $request, Account $account, Article $article)
+    public function patch(ArticlePatchRequest $request, Article $article)
     {
         $data = $request->all();
         $article->fill($data)->save();
@@ -63,7 +65,7 @@ class Articles extends Controller
         return new ArticleResource($article);
     }
 
-    public function delete(Account $account, Article $article)
+    public function delete(Article $article)
     {
         $article->delete();
         return response(null, 204);

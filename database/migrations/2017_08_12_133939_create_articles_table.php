@@ -14,10 +14,13 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string("title", 100);
             $table->text("article");
             $table->timestamps();
+
+            $table->foreignId("user_id")->unsigned();
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 

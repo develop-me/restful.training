@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use Auth;
+
 use App\Task;
 
 use App\Http\Requests\TaskRequest;
@@ -10,26 +11,26 @@ use App\Http\Resources\TaskResource;
 
 class Tasks extends Controller
 {
-    public function create(TaskRequest $request, Account $account)
+    public function create(TaskRequest $request)
     {
         $data = $request->only(["task"]);
-        $data["account_id"] = $account->id;
+        $data["user_id"] = Auth::id();
         $task = Task::create($data);
 
         return new TaskResource($task);
     }
 
-    public function list(Account $account)
+    public function list()
     {
-        return TaskResource::collection(Task::where("account_id", $account->id)->get());
+        return TaskResource::collection(Task::where("user_id", Auth::id())->get());
     }
 
-    public function read(Account $account, Task $task)
+    public function read(Task $task)
     {
         return new TaskResource($task);
     }
 
-    public function update(TaskRequest $request, Account $account, Task $task)
+    public function update(TaskRequest $request, Task $task)
     {
         $data = $request->only(["task"]);
         $task->fill($data)->save();
@@ -37,14 +38,14 @@ class Tasks extends Controller
         return new TaskResource($task);
     }
 
-    public function complete(Account $account, Task $task)
+    public function complete(Task $task)
     {
         $task->completed = true;
         $task->save();
         return new TaskResource($task);
     }
 
-    public function delete(Account $account, Task $task)
+    public function delete(Task $task)
     {
         $task->delete();
         return response(null, 204);

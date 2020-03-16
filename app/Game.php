@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $attributes = [
         "player_1_score" => 0,
         "player_2_score" => 0,

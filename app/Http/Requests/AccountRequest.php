@@ -16,7 +16,7 @@ class AccountRequest extends FormRequest
         $password = config("app.password");
 
         return [
-            "name" => ["required", "string", "alpha_dash", "unique:accounts,name", "max:20"],
+            "name" => ["required", "string", "unique:users,name", "max:50"],
             "key" => ["required", "in:{$password}"],
         ];
     }
