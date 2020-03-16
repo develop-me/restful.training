@@ -15,20 +15,15 @@ class PingPong extends Controller
 {
     public function list()
     {
-        $games = Game::where("user_id", Auth::id())->orderBy("updated_at", "desc")->get();
+        $games = Auth::user()->games->sortByDesc("updated_at");
         return PingPongResource::collection($games);
     }
 
     public function create(PingPongRequest $request)
     {
-        $game = new Game();
-        $game->player_1 = $request->get("player_1");
-        $game->player_2 = $request->get("player_2");
-        $game->winning_score = $request->get("winning_score", $game->winning_score);
-        $game->change_serve = $request->get("change_serve", $game->change_serve);
-        $game->user_id = Auth::id();
-        $game->save();
-
+        $data = $request->all();
+        $data["user_id"] = Auth::id();
+        $game = Game::create($data);
         return new PingPongResource($game);
     }
 
