@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Illuminate\Http\Response;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
 use App\Article;
 use App\Tag;
@@ -15,7 +17,7 @@ use App\Http\Resources\ArticleListResource;
 
 class Articles extends Controller
 {
-    public function create(ArticleRequest $request)
+    public function create(ArticleRequest $request) : ArticleResource
     {
         $data = $request->all();
         $data["user_id"] = Auth::id();
@@ -27,18 +29,18 @@ class Articles extends Controller
         return new ArticleResource($article);
     }
 
-    public function list()
+    public function list() : ResourceCollection
     {
         $articles = auth()->user()->articles;
         return ArticleListResource::collection($articles);
     }
 
-    public function read(Article $article)
+    public function read(Article $article) : ArticleResource
     {
         return new ArticleResource($article);
     }
 
-    public function update(ArticleRequest $request, Article $article)
+    public function update(ArticleRequest $request, Article $article) : ArticleResource
     {
         $data = $request->only(["title", "content"]);
         $article->fill($data)->save();
@@ -49,7 +51,7 @@ class Articles extends Controller
         return new ArticleResource($article);
     }
 
-    public function patch(ArticlePatchRequest $request, Article $article)
+    public function patch(ArticlePatchRequest $request, Article $article) : ArticleResource
     {
         $data = $request->all();
         $article->fill($data)->save();
@@ -64,7 +66,7 @@ class Articles extends Controller
         return new ArticleResource($article);
     }
 
-    public function delete(Article $article)
+    public function delete(Article $article) : Response
     {
         $article->delete();
         return response(null, 204);

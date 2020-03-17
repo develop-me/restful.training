@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Illuminate\Http\JsonResponse;
 
 use App\AnimalFact;
 
@@ -11,10 +12,15 @@ use App\Http\Resources\AnimalFactResource;
 
 class AnimalFacts extends Controller
 {
-    public function random()
+    public function random() : JsonResponse
     {
         $facts = AnimalFact::all();
-        return $facts->isEmpty() ? response(null, 204) : new AnimalFactResource($facts->random());
+
+        if ($facts->isEmpty()) {
+            return new JsonResponse(null, 204);
+        }
+
+        return (new AnimalFactResource($facts->random()))->response();
     }
 
     public function create(AnimalFactRequest $request) : AnimalFactResource
