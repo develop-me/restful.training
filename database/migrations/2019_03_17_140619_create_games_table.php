@@ -14,7 +14,7 @@ class CreateGamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->integer('winning_score')->default(21);
             $table->integer('change_serve')->default(5);
             $table->string('player_1', 50);
@@ -23,8 +23,8 @@ class CreateGamesTable extends Migration
             $table->integer('player_2_score')->default(0);
             $table->timestamps();
 
-            $table->integer("account_id")->unsigned();
-            $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreignId("user_id")->unsigned();
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 

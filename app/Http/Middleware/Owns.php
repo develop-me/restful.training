@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
-class Account
+class Owns
 {
     /**
      * Handle an incoming request.
@@ -15,7 +16,7 @@ class Account
      */
     public function handle($request, Closure $next, $type)
     {
-        if ($request->route("account")->id !== $request->route($type)->account_id) {
+        if (Auth::id() !== $request->route($type)->user_id) {
             return abort(404);
         }
 

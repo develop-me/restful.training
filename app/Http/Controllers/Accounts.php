@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
+
+use App\User;
 use App\Http\Requests\AccountRequest;
-use App\Account;
 
 class Accounts extends Controller
 {
-    public function create(AccountRequest $request)
+    public function create(AccountRequest $request) : JsonResponse
     {
         $data = $request->only(["name"]);
-        $account = Account::create($data);
+        $user = User::create($data);
+        $token = $user->createToken("api-token");
 
-        return [
-            "uri" => $account->uri(),
-            "api_key" => $account->key,
-        ];
+        return response()->json([
+            "name" => $user->name,
+            "api_token" => $token->plainTextToken,
+        ]);
     }
 }

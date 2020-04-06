@@ -17,7 +17,7 @@ class AnimalFactResource extends JsonResource
         return [
             "fact" => (string) $this->fact,
             "made_up" => (bool) $this->made_up,
-            "by" => (string) $this->account->name,
+            "by" => (string) $this->user->name,
         ];
     }
 }

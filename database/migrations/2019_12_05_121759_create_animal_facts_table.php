@@ -14,13 +14,13 @@ class CreateAnimalFactsTable extends Migration
     public function up()
     {
         Schema::create('animal_facts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('fact', 255);
             $table->boolean('made_up');
             $table->timestamps();
 
-            $table->integer("account_id")->unsigned();
-            $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreignId("user_id")->unsigned();
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 

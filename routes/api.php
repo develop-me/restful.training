@@ -1,21 +1,14 @@
 <?php
 
-use Illuminate\Http\Request;
-
-$hostname = config("app.hostname");
-
 $router->post("accounts", "Accounts@create");
 
-$router->group([
-    "domain" => "{account}.{$hostname}",
-    "middleware" => ["key"],
-], function ($router) {
+$router->group(["middleware" => ["auth:sanctum"]], function ($router) {
     $router->group(["prefix" => "blog"], function ($router) {
         $router->group(["prefix" => "articles"], function ($router) {
             $router->get("", "Articles@list");
             $router->post("", "Articles@create");
 
-            $router->group(["middleware" => "account:article"], function ($router) {
+            $router->group(["middleware" => "owns:article"], function ($router) {
                 $router->get("{article}", "Articles@read");
                 $router->put("{article}", "Articles@update");
                 $router->patch("{article}", "Articles@patch");
@@ -42,7 +35,7 @@ $router->group([
         $router->get("", "PingPong@list");
         $router->post("", "PingPong@create");
 
-        $router->group(["middleware" => "account:game"], function ($router) {
+        $router->group(["middleware" => "owns:game"], function ($router) {
             $router->get("{game}", "PingPong@show");
             $router->delete("{game}", "PingPong@reset");
             $router->patch("{game}/score", "PingPong@score");
@@ -58,7 +51,7 @@ $router->group([
         $router->get("", "Tasks@list");
         $router->post("", "Tasks@create");
 
-        $router->group(["middleware" => "account:task"], function ($router) {
+        $router->group(["middleware" => "owns:task"], function ($router) {
             $router->get("{task}", "Tasks@read");
             $router->patch("{task}", "Tasks@update");
             $router->patch("{task}/complete", "Tasks@complete");

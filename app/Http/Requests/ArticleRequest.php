@@ -25,7 +25,7 @@ class ArticleRequest extends FormRequest
     {
         return [
            "title" => ["required", "string", "max:100"],
-           "article" => ["required", "string"],
+           "content" => ["required", "string"],
            "tags" => ["array"],
            "tags.*" => ["string", "max:255"],
         ];

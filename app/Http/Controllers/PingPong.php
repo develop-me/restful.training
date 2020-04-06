@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Account;
+use Auth;
+use Illuminate\Http\Response;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
 use App\Game;
 
 use App\Http\Requests\PingPongRequest;
@@ -12,31 +15,26 @@ use App\Http\Resources\PingPongResource;
 
 class PingPong extends Controller
 {
-    public function list(Account $account)
+    public function list() : ResourceCollection
     {
-        $games = Game::where("account_id", $account->id)->orderBy("updated_at", "desc")->get();
+        $games = Auth::user()->games->sortByDesc("updated_at");
         return PingPongResource::collection($games);
     }
 
-    public function create(PingPongRequest $request, Account $account)
+    public function create(PingPongRequest $request) : PingPongResource
     {
-        $game = new Game();
-        $game->player_1 = $request->get("player_1");
-        $game->player_2 = $request->get("player_2");
-        $game->winning_score = $request->get("winning_score", $game->winning_score);
-        $game->change_serve = $request->get("change_serve", $game->change_serve);
-        $game->account_id = $account->id;
-        $game->save();
-
+        $data = $request->all();
+        $data["user_id"] = Auth::id();
+        $game = Game::create($data);
         return new PingPongResource($game);
     }
 
-    public function show(Account $account, Game $game)
+    public function show(Game $game) : PingPongResource
     {
         return new PingPongResource($game);
     }
 
-    public function score(PingPongScoreRequest $request, Account $account, Game $game)
+    public function score(PingPongScoreRequest $request, Game $game) : PingPongResource
     {
         if (!$game->complete()) {
             $game->score($request->get("player"));
@@ -45,7 +43,7 @@ class PingPong extends Controller
         return new PingPongResource($game);
     }
 
-    public function reset(Account $account, Game $game)
+    public function reset(Game $game) : Response
     {
         $game->delete();
         return response(null, 204);

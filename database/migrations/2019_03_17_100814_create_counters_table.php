@@ -14,13 +14,13 @@ class CreateCountersTable extends Migration
     public function up()
     {
         Schema::create('counters', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('count')->default(0);
             $table->integer('step')->default(1);
             $table->timestamps();
 
-            $table->integer("account_id")->unsigned();
-            $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreignId("user_id")->unsigned()->unique();
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 

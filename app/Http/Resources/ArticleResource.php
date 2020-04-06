@@ -20,7 +20,7 @@ class ArticleResource extends JsonResource
         return [
             "id" => (int) $this->id,
             "title" => $this->title,
-            "article" => $this->article,
+            "content" => $this->content,
 
             // just return a list of tag names
             "tags" => $this->tags->pluck("name"),

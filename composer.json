@@ -9,7 +9,8 @@
         "fideloper/proxy": "^4.0",
         "fruitcake/laravel-cors": "^1.0",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/sanctum": "^2.1",
+        "laravel/tinker": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

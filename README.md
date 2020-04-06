@@ -25,28 +25,33 @@ In order to use the service you'll need to create an account. You only need to d
 
 ### Request
 
-- `key`: use the password you've been given
-- `name`: pick a username
+- `name`: your full name
+- `password`: the password you've been given
 
 ### Response
 
-- `uri`: where you should make your API requests to
-- `api_key`: your unique API key, write this down you'll need it for all other requests
+- `name`: where you should make your API requests to
+- `api_token`: your unique API token, write this down you'll need it for all other requests
 
 ### Usage
 
-**Once you have created your account use the provided uri for all other requests**
+You'll need to use your token for all requests.
 
 For example, if your response was:
 
 ```json
 {
-    "uri": "test.restful.training/api/",
-    "api_key": "15beab53cc8880738da99953d2f6ceffbe83418a"
+    "name": "Jenny Flannigan",
+    "api_token": "15beab53cc8880738da99953d2f6ceffbe83418a"
 }
 ```
 
-All future requests should use the root uri `http://test.restful.training/api/` with the query string `?key=15beab53cc8880738da99953d2f6ceffbe83418a`
+All your requests should have the following header:
+
+```
+Authorization: Bearer 15beab53cc8880738da99953d2f6ceffbe83418a
+```
+
 
 ---
 
@@ -67,7 +72,7 @@ Will create a new blog article
 ##### Request
 
 - `title`: required, article title
-- `article`: required, article content
+- `content`: required, article content
 - `tags`: an array of tags
 
 #### `GET /blog/articles/<id>`
@@ -81,7 +86,7 @@ Will update an entire existing article
 ##### Request
 
 - `title`: required, article title
-- `article`: required, article content
+- `content`: required, article content
 - `tags`: an array of tags
 
 #### `PATCH /blog/articles/<id>`
@@ -91,7 +96,7 @@ Will update parts of an existing article
 ##### Request
 
 - `title`: article title
-- `article`: article content
+- `content`: article content
 - `tags`: an array of tags
 
 #### `DELETE /blog/articles/<id>`
@@ -150,6 +155,8 @@ A random animal fact
 - `fact`: a random fact
 - `made_up`: whether it's made up
 - `by`: who posted it
+
+**If there are no animal facts in the database a `204 No Content` response will be returned**
 
 ---
 
