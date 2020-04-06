@@ -156,6 +156,8 @@ A random animal fact
 - `made_up`: whether it's made up
 - `by`: who posted it
 
+**If there are no animal facts in the database a `204 No Content` response will be returned**
+
 ---
 
 ## Tasks
