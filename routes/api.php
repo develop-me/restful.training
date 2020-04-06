@@ -2,7 +2,7 @@
 
 $router->post("accounts", "Accounts@create");
 
-$router->group(["middleware" => ["auth:airlock"]], function ($router) {
+$router->group(["middleware" => ["auth:sanctum"]], function ($router) {
     $router->group(["prefix" => "blog"], function ($router) {
         $router->group(["prefix" => "articles"], function ($router) {
             $router->get("", "Articles@list");
