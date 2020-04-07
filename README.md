@@ -1,6 +1,6 @@
 # RESTful.training
 
-[http://restful.training](http://restful.training) was created to give you some experience with using RESTful APIs. It is an API for a basic blog that has articles, comments, and tags.
+[https://restful.training](https://restful.training) was created to give you some experience with using RESTful APIs. It is an API for a basic blog that has articles, comments, and tags.
 
 - [Authentication](#auth)
 - End Points:
@@ -21,7 +21,7 @@ All requests should be sent using JSON and with the `Accept: application/json` h
 
 In order to use the service you'll need to create an account. You only need to do this once.
 
-`POST http://restful.training/api/accounts`
+`POST https://restful.training/api/accounts`
 
 ### Request
 
