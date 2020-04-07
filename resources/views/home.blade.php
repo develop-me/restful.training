@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>RESTful Training</title>
+        <title>RESTful.training</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    RESTful Training
+                    RESTful.training
                 </div>
                 <p><a href="https://github.com/develop-me/restful.training#restfultraining">Docs</a></p>
             </div>
