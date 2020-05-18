@@ -31,7 +31,7 @@ In order to use the service you'll need to create an account. You only need to d
 ### Request
 
 - `name`: your full name
-- `password`: the password you've been given
+- `key`: the password you've been given
 
 ### Response
 
