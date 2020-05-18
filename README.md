@@ -13,7 +13,12 @@
 
 ## General
 
-All requests should be sent using JSON and with the `Accept: application/json` header.
+All requests should:
+
+- Use the basename `https://restful.training/api/`
+- Be sent using JSON and with the `Accept: application/json` header.
+- Include an authentication token (see below)
+
 
 ---
 
