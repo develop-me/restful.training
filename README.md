@@ -35,7 +35,7 @@ In order to use the service you'll need to create an account. You only need to d
 
 ### Response
 
-- `name`: where you should make your API requests to
+- `name`: the name you provided
 - `api_token`: your unique API token, write this down you'll need it for all other requests
 
 ### Usage
