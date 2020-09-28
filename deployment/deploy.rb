@@ -32,8 +32,10 @@ namespace :deploy do
     # runs composer install
     task :composer do
         on roles(:app) do
-            info "Install Composer packages"
-            execute "composer install"
+            within release_path do
+                info "Install Composer packages"
+                execute "composer install"
+            end
         end
     end
 
