@@ -1,4 +1,4 @@
-server "smallhadroncollider.com", user: "mark", roles: %w{app}
+server "restful.training", user: "ubuntu", roles: %w{app}
 
-set :branch, "master"
+set :branch, "production"
 set :deploy_to, "/var/www/restful.training"
