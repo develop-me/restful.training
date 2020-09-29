@@ -9,7 +9,6 @@ set :linked_files, fetch(:linked_files, []).push(".env")
 # Keep the storage directory around between deployments
 set :linked_dirs, fetch(:linked_dirs, []).push("storage")
 
-
 ##
 # Tasks
 # On each deployment, run these tasks
@@ -25,17 +24,6 @@ namespace :deploy do
 
             info "Caching config"
             execute "php #{current_path}/artisan config:cache"
-        end
-    end
-
-    # composer task
-    # runs composer install
-    task :composer do
-        on roles(:app) do
-            within release_path do
-                info "Install Composer packages"
-                execute "composer install"
-            end
         end
     end
 
@@ -64,8 +52,8 @@ namespace :deploy do
     ###
 
     # run these tasks once the code has been published
-    after :published, "optimize"
-    after :published, "composer"
+    after :published, "composer:install"
     after :published, "migrate_db"
+    after :published, "optimize"
     after :published, "php_reload"
 end
