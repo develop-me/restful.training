@@ -1,8 +1,4 @@
-server "smallhadroncollider.com", user: "mark", roles: %w{app}
+server "restful.training", user: "ubuntu", roles: %w{app}
 
-set :branch, "master"
+set :branch, "main"
 set :deploy_to, "/var/www/restful.training"
-
-namespace :deploy do
-    after :published, "laravel:migrate_db"
-end
