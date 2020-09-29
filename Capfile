@@ -8,7 +8,6 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/console'
 require 'capistrano/composer'
-require 'capistrano/laravel'
 
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
